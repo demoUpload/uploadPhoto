@@ -1,0 +1,11 @@
+<div>Current User: <%= current_user.email if current_user%></div>
+
+</br>
+<% for @user in @u %>
+  <div><%= @user.email%></div>
+  <button class="loginButton">Login</button>
+<% end %>
+
+
+</br>
+<button id="logout">Logout</button>
