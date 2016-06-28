@@ -7,7 +7,7 @@ class DownloadController < ApplicationController
     p current_user
 
     @u = User.all()
-    @documents = Document.all()
+    @papers = Paper.all()
   end
 
   # download file
@@ -16,13 +16,14 @@ class DownloadController < ApplicationController
 
     p file_id
 
-    document = Document.find(file_id)
+    paper = Paper.find(file_id)
 
     p current_user
 
-    if document.user == current_user
-      file = open(document.url)
-      send_data file.read, filename: document.name, type: document.file.content_type, disposition: 'attachment', stream: 'true', buffer_size: '4096'
+    if paper.user == current_user
+      attachment = paper.attachment
+
+      send_data attachment.read, filename: attachment.file.filename, type:  attachment.file.content_type, disposition: 'attachment', stream: 'true', buffer_size: '4096'
     else
       render :json => {:message => "You don't have permission to access this file"}
     end
