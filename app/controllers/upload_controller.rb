@@ -1,4 +1,5 @@
 class UploadController < ApplicationController
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :exception
@@ -7,18 +8,17 @@ class UploadController < ApplicationController
     p current_user
 
     @u = User.all()
-
+    @paper = Paper.new
   end
 
   def create_paper
     @paper = Paper.new(paper_params)
 
     if @paper.save
-      render :json => {:message => "Create document successful..."}
+      redirect_to action: "index", notice: 'Document was successfully created.'
     else
-      render :json => {:message => "Error..."}
+      redirect_to action: "index", notice: 'There is error occur.'
     end
-
   end
 
 private
