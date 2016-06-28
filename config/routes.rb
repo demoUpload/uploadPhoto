@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
     get 'download' => 'download#index'
 
+    get 'download/:id' => 'download#download'
+
     # Example of regular route:
     #   get 'products/:id' => 'catalog#view'
 
