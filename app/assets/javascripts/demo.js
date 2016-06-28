@@ -4,7 +4,7 @@ $(document).ready(function() {
   $(".loginButton").click(function() {
     console.log('Click to Login');
 
-    var userEmail = $(this).prev().html();
+    var userEmail = $(this).parent().prev().children().html();
 
     var json = '{"user": {"email": "' + userEmail + '", "password": "anhhau124"}}'
       $.ajax({
@@ -19,7 +19,7 @@ $(document).ready(function() {
         },
         data: json,
         success: function(response) {
-          console.log(response);
+          location.reload();
         },
         error: function(response) {
           console.log(response);
@@ -33,7 +33,7 @@ $(document).ready(function() {
       type: 'DELETE',
       data: {},
       success: function(response) {
-        console.log(response);
+        location.reload();
       },
       error: function(response) {
       }
@@ -54,7 +54,7 @@ $(document).ready(function() {
       },
       data: json,
       success: function(response) {
-        console.log(response);
+        location.reload();
       },
       error: function(response) {
         console.log(response);
