@@ -10,21 +10,20 @@ class UploadController < ApplicationController
 
   end
 
-  def create_document
-    puts document_params
-    @document = Document.new(document_params)
-    #
-    # if @document.save
-    #   redirect_to documents_path, notice: "The document has been uploaded."
-    # end
-    render :json => {:message => "Create document..."}
+  def create_paper
+    @paper = Paper.new(paper_params)
 
+    if @paper.save
+      render :json => {:message => "Create document successful..."}
+    else
+      render :json => {:message => "Error..."}
+    end
 
   end
 
 private
-  def document_params
-    params.permit(:file)
+  def paper_params
+    params.permit(:attachment)
   end
 
 end

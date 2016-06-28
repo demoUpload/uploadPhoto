@@ -13,7 +13,9 @@ Rails.application.routes.draw do
 
     get 'download/:id' => 'download#download'
 
-    post 'upload' => 'upload#create_document'
+    post 'upload' => 'upload#create_paper'
+
+    # resources :high_scores
     # Example of regular route:
     #   get 'products/:id' => 'catalog#view'
 
