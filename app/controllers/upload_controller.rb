@@ -17,7 +17,7 @@ class UploadController < ApplicationController
       @paper = current_user.papers.new(paper_params)
 
       if @paper.save
-        redirect_to action: "index", notice: 'Document was successfully created.'
+        redirect_to url_for(:controller => :download, :action => :index), notice: 'Document was successfully created.'
       else
         redirect_to action: "index", notice: 'There is error occur.'
       end
