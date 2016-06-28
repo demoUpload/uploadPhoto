@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     var userEmail = $(this).parent().prev().children().html();
 
-    var json = '{"user": {"email": "' + userEmail + '", "password": "anhhau124"}}'
+    var json = '{"user": {"email": "' + userEmail + '", "password": "11111111"}}'
       $.ajax({
         url: '/users/sign_in',
         type: 'POST',
@@ -61,4 +61,8 @@ $(document).ready(function() {
       }
     });
   }
+
+  $("#fileuploader").click(function() {
+    console.log('Uploading...')
+  })
 })

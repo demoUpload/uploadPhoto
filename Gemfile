@@ -47,3 +47,10 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'carrierwave', '~> 0.11.2'
+gem 'fog', '~> 1.38.0'
+gem 'fog-aws'
+
+group :development do
+  gem 'better_errors'
+end
