@@ -21,8 +21,9 @@ class UploadController < ApplicationController
       else
         redirect_to action: "index", notice: 'There is error occur.'
       end
+    else
+      redirect_to action: "index"
     end
-
 
   end
 
