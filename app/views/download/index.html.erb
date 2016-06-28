@@ -25,7 +25,10 @@
     <div class="row">
       <div class="col-md-1"><%=paper.id%></div>
       <div class="col-md-4">
-        <a target="_blank" href="/download/<%=paper.id%>">1</a>
+        <a target="_blank" href="/download/<%=paper.id%>"><%=paper.attachment.file.filename if paper.attachment.file %></a>
+      </div>
+      <div class="col-md-4">
+        <%=paper.user.email %>
       </div>
     </div>
   <% end %>

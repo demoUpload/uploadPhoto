@@ -12,13 +12,18 @@ class UploadController < ApplicationController
   end
 
   def create_paper
-    @paper = Paper.new(paper_params)
 
-    if @paper.save
-      redirect_to action: "index", notice: 'Document was successfully created.'
-    else
-      redirect_to action: "index", notice: 'There is error occur.'
+    if current_user
+      @paper = current_user.papers.new(paper_params)
+
+      if @paper.save
+        redirect_to action: "index", notice: 'Document was successfully created.'
+      else
+        redirect_to action: "index", notice: 'There is error occur.'
+      end
     end
+
+
   end
 
 private
