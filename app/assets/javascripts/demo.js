@@ -62,7 +62,58 @@ $(document).ready(function() {
     });
   }
 
-  $("#fileuploader").click(function() {
-    console.log('Uploading...')
-  })
+  $(':file').change(function(){
+    var file = this.files[0];
+    var name = file.name;
+    var size = file.size;
+    var type = file.type;
+  });
+
+  function setBeforeSendHandler(xhr) {
+    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    xhr.setRequestHeader("Content-Type","application/json");
+    xhr.setRequestHeader("Accept","application/json");
+  }
+
+  $(':button').click(function(){
+    var formData = new FormData($('form')[0]);
+    $.ajax({
+        url: '/upload',  //Server script to process data
+        type: 'POST',
+        xhr: function() {  // Custom XMLHttpRequest
+            var myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){ // Check if upload property exists
+                myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+            }
+            return myXhr;
+        },
+        //Ajax events
+        beforeSend: function(xhr) {
+          setBeforeSendHandler(xhr)
+        },
+        success: completeHandler,
+        error: errorHandler,
+        // Form data
+        data: formData,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+  });
+
+  function completeHandler(data) {
+    console.log('completeHandler:', data)
+  }
+
+  function errorHandler(err) {
+    console.log('Error:', err)
+  }
+
+  function progressHandlingFunction(e){
+    if(e.lengthComputable){
+        $('progress').attr({value:e.loaded,max:e.total});
+    }
+}
+
 })

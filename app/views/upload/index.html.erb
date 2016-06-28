@@ -22,7 +22,10 @@
 
   <div class="row">
     <label class="control-label">Select File</label>
-    <input id="uploadFile" type="file" class="file">
-    <button id="fileuploader">Upload</button>
+  <form enctype="multipart/form-data">
+      <input name="file" type="file" />
+      <input type="button" value="Upload" />
+    </form>
+    <progress></progress>
   </div>
 </div>

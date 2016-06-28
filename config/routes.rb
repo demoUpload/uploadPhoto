@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     get 'download/:id' => 'download#download'
 
+    post 'upload' => 'upload#create_document'
     # Example of regular route:
     #   get 'products/:id' => 'catalog#view'
 
