@@ -7,14 +7,15 @@ class UploadController < ApplicationController
   def index
     p current_user
 
-    @u = User.all()
+    @users = User.all()
     @paper = Paper.new
   end
 
   def create_paper
+    user = User.find_by_id(paper_params['user_id'])
 
-    if current_user
-      @paper = current_user.papers.new(paper_params)
+    if user
+      @paper = user.papers.new(paper_params)
 
       if @paper.save
         redirect_to url_for(:controller => :download, :action => :index), notice: 'Document was successfully created.'
@@ -29,7 +30,7 @@ class UploadController < ApplicationController
 
 private
   def paper_params
-    params.permit(:attachment)
+    params.permit(:attachment, :user_id)
   end
 
 end

@@ -2,7 +2,7 @@
   <h2>Current User: <%= current_user.email if current_user%></h2>
 
   </br>
-  <% for @user in @u %>
+  <% for @user in @users %>
     <div class="row">
       <div class="col-md-4"><h4><%= @user.email%></h4></div>
       <div class="col-md-4">
@@ -21,11 +21,26 @@
   <hr>
 
   <div class="row">
-    <label class="control-label">Select File</label>
-
     <form enctype="multipart/form-data" action="/upload" method="post">
-      <input name="attachment" type="file" />
-      <input type="submit" value="Upload" />
+
+      <label for="attachment">Choose file</label>
+      <div class="input-group">
+        <input name="attachment" type="file" class="form-control"/>
+      </div>
+      <br/>
+
+      <label for="user">Choose User to download</label>
+      <div class="input-group">
+        <select id="user_id" name="user_id">
+          <% for @user in @users %>
+          <option value="<%= @user.id %>"><%= @user.email %></option>
+          <% end %>
+        </select>
+      </div>
+      <br/>
+      <div class="input-group">
+        <input type="submit" value="Upload" />
+      </div>
     </form>
   </div>
 
