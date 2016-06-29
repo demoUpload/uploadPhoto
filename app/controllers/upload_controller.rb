@@ -5,10 +5,7 @@ class UploadController < ApplicationController
   # protect_from_forgery with: :exception
 
   def index
-    p current_user
-
     @users = User.all()
-    @paper = Paper.new
   end
 
   def create_paper

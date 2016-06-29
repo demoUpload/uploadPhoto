@@ -1,25 +1,6 @@
+<br/>
+<hr/>
 <div class="container">
-  <h2>Current User: <%= current_user.email if current_user%></h2>
-
-  </br>
-  <% for @user in @users %>
-    <div class="row">
-      <div class="col-md-4"><h4><%= @user.email%></h4></div>
-      <div class="col-md-4">
-        <button class="btn btn-primary loginButton">Login</button>
-      </div>
-    </div>
-  <% end %>
-
-  <hr>
-  <div class="row">
-    <div class="col-md-4">
-      <button  class="btn btn-danger" id="logout">Logout</button>
-    </div>
-  </div>
-
-  <hr>
-
   <div class="row">
     <form enctype="multipart/form-data" action="/upload" method="post">
 
